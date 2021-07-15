@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AnimalCrossing</string>
+    <string name="tab_daily">Daily</string>
+    <string name="tab_creatures">Creatures</string>
+    <string name="tab_museum">Museum</string>
+    <string name="tab_category">Category</string>
+</resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/daily_check_list_fragment">
+
+    <fragment
+        android:id="@+id/daily_check_list_fragment"
+        android:name="com.example.animalcrossing.ui.DailyCheckListFragment"
+        android:label="DailyCheckListFragment"
+        tools:layout="@layout/daily_check_list_fragment" />
+
+    <fragment
+        android:id="@+id/creatures_fragment"
+        android:name="com.example.animalcrossing.ui.CreaturesFragment"
+        android:label="CreaturesFragment"
+        tools:layout="@layout/creatures_fragment" />
+
+    <fragment
+        android:id="@+id/museum_fragment"
+        android:name="com.example.animalcrossing.ui.MuseumFragment"
+        android:label="MuseumFragment"
+        tools:layout="@layout/museum_fragment" />
+
+    <fragment
+        android:id="@+id/category_fragment"
+        android:name="com.example.animalcrossing.ui.CategoryFragment"
+        android:label="CategoryFragment"
+        tools:layout="@layout/category_fragment" />
+
+</navigation>
