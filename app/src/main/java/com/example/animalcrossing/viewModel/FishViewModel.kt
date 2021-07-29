@@ -37,9 +37,8 @@ class FishViewModel : ViewModel() {
                     apiVersion
             )
             withContext(Dispatchers.Main) {
-                Log.d("FishViewModel", "TTT response = ${response.isSuccessful}")
                 if (response.isSuccessful) {
-                    Log.d("FishViewModel", "TTT result = ${response.body()}")
+                    fishList.value = response.body()
                 } else {
                     Log.d("FishViewModel", "TTT onError ${response.message()}, ${response.raw()}")
                     onError("Error : ${response.message()}, ${response.body()}")
