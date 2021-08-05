@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.animalcrossing.utils.LogUtils
@@ -33,7 +34,7 @@ class FishFragment: Fragment() {
         recyclerView = binding.recyclerviewFish
         recyclerView?.apply {
             adapter = fishAdapter
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = GridLayoutManager(context,3)
         }
         fishViewModel = ViewModelProviders.of(this).get(FishViewModel::class.java)
         binding.loading.isVisible = true
