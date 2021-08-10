@@ -45,7 +45,7 @@ class CreaturesFragment : Fragment() {
         }
 
         override fun createFragment(position: Int): Fragment {
-            return FishFragment()
+            return SubCreaturesFragment(position)
         }
     }
 }

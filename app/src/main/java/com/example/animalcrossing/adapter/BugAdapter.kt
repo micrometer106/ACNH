@@ -9,28 +9,28 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.animalcrossing.R
-import com.example.animalcrossing.model.Fish
+import com.example.animalcrossing.model.Bug
 
-class FishAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class BugAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var fishList: MutableList<Fish> = mutableListOf()
+    private var bugList: MutableList<Bug> = mutableListOf()
 
-    fun setFishList(fishList: MutableList<Fish>) {
-        this.fishList = fishList
+    fun setBugList(fishList: MutableList<Bug>) {
+        this.bugList = fishList
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return FishViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.creatures_item_layout, parent, false))
+        return BugViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.creatures_item_layout, parent, false))
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as FishViewHolder).onBindViewHolder(fishList[position].name, fishList[position].imageUrl)
+        (holder as BugViewHolder).onBindViewHolder(bugList[position].name, bugList[position].imageUrl)
     }
 
     override fun getItemCount(): Int =
-        fishList.size
+        bugList.size
 
-    inner class FishViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class BugViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val preview: ImageView = itemView.findViewById(R.id.preview)
         private val text: TextView = itemView.findViewById(R.id.title)
         fun onBindViewHolder(title: String, url: String) {
