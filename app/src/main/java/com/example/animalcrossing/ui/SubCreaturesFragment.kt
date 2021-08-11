@@ -13,10 +13,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.animalcrossing.R
 import com.example.animalcrossing.adapter.BugAdapter
 import com.example.animalcrossing.adapter.FishAdapter
+import com.example.animalcrossing.adapter.SeaCreatureAdapter
 import com.example.animalcrossing.databinding.SubCreaturesFragmentBinding
 import com.example.animalcrossing.viewModel.BugViewModel
 import com.example.animalcrossing.viewModel.CreaturesViewModel
 import com.example.animalcrossing.viewModel.FishViewModel
+import com.example.animalcrossing.viewModel.SeaCreatureViewModel
 
 class SubCreaturesFragment(private val page: Int) : Fragment() {
 
@@ -26,6 +28,7 @@ class SubCreaturesFragment(private val page: Int) : Fragment() {
     private var recyclerView : RecyclerView? = null
     private val fishAdapter = FishAdapter()
     private val bugAdapter = BugAdapter()
+    private val seaCreatureAdapter = SeaCreatureAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,6 +60,7 @@ class SubCreaturesFragment(private val page: Int) : Fragment() {
         return when(page) {
             0 -> fishAdapter
             1 -> bugAdapter
+            2 -> seaCreatureAdapter
             else -> null
         }
     }
@@ -65,6 +69,7 @@ class SubCreaturesFragment(private val page: Int) : Fragment() {
         return when (page) {
             0 -> ViewModelProviders.of(this).get(FishViewModel::class.java)
             1 -> ViewModelProviders.of(this).get(BugViewModel::class.java)
+            2 -> ViewModelProviders.of(this).get(SeaCreatureViewModel::class.java)
             else -> null
         }
     }
@@ -73,6 +78,7 @@ class SubCreaturesFragment(private val page: Int) : Fragment() {
         when(page) {
             0 -> observeFishList()
             1 -> observeBugList()
+            2 -> observeSeaCreatureList()
         }
     }
 
@@ -91,6 +97,15 @@ class SubCreaturesFragment(private val page: Int) : Fragment() {
             binding.loading.isVisible = false
             bugAdapter.setBugList(it)
             bugAdapter.notifyDataSetChanged()
+        })
+    }
+
+    private fun observeSeaCreatureList() {
+        val seaCreatureViewModel = viewModel as SeaCreatureViewModel
+        seaCreatureViewModel.seaCreatureList.observe(this, Observer {
+            binding.loading.isVisible = false
+            seaCreatureAdapter.setSeaCreatureList(it)
+            seaCreatureAdapter.notifyDataSetChanged()
         })
     }
 

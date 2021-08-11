@@ -7,7 +7,7 @@ import retrofit2.http.Header
 
 interface SeaCreaturesAPI {
     @GET("sea")
-    suspend fun getFishList(
+    suspend fun getSeaCreatureList(
             @Header("X-API-KEY") apiKey: String,
             @Header("Accept-Version") version: String
     ) : Response<MutableList<SeaCreature>>

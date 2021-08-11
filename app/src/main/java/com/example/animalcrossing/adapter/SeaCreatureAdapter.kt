@@ -9,14 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.animalcrossing.R
-import com.example.animalcrossing.model.Bug
+import com.example.animalcrossing.model.SeaCreature
 
-class BugAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class SeaCreatureAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var bugList: MutableList<Bug> = mutableListOf()
+    private var seaCreatureList: MutableList<SeaCreature> = mutableListOf()
 
-    fun setBugList(bugList: MutableList<Bug>) {
-        this.bugList = bugList
+    fun setSeaCreatureList(seaCreatureList: MutableList<SeaCreature>) {
+        this.seaCreatureList = seaCreatureList
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -24,11 +24,11 @@ class BugAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as BugViewHolder).onBindViewHolder(bugList[position].name, bugList[position].imageUrl)
+        (holder as BugViewHolder).onBindViewHolder(seaCreatureList[position].name, seaCreatureList[position].imageUrl)
     }
 
     override fun getItemCount(): Int =
-        bugList.size
+        seaCreatureList.size
 
     inner class BugViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val preview: ImageView = itemView.findViewById(R.id.preview)
