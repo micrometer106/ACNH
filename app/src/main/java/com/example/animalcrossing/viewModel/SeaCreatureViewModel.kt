@@ -1,5 +1,6 @@
 package com.example.animalcrossing.viewModel
 
+import androidx.annotation.MainThread
 import androidx.lifecycle.MutableLiveData
 import com.example.animalcrossing.model.NookipediaService
 import com.example.animalcrossing.model.SeaCreature
@@ -7,6 +8,16 @@ import com.example.animalcrossing.utils.LogUtils
 import kotlinx.coroutines.*
 
 class SeaCreatureViewModel : CreaturesViewModel() {
+
+    companion object{
+        private lateinit var instance: SeaCreatureViewModel
+
+        @MainThread
+        fun getInstance(): SeaCreatureViewModel{
+            instance = if(::instance.isInitialized) instance else SeaCreatureViewModel()
+            return instance
+        }
+    }
 
     var job: Job? = null
     private val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
@@ -18,7 +29,9 @@ class SeaCreatureViewModel : CreaturesViewModel() {
     private val loading = MutableLiveData<Boolean>()
 
     override fun refresh(apiKey: String, apiVersion: String) {
-        fetchSeaCreatureList(apiKey, apiVersion)
+        if (seaCreatureList.value == null) {
+            fetchSeaCreatureList(apiKey, apiVersion)
+        }
     }
 
     private fun fetchSeaCreatureList(apiKey: String, apiVersion: String) {

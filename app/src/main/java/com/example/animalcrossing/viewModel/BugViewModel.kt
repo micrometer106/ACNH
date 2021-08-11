@@ -1,5 +1,6 @@
 package com.example.animalcrossing.viewModel
 
+import androidx.annotation.MainThread
 import androidx.lifecycle.MutableLiveData
 import com.example.animalcrossing.model.Bug
 import com.example.animalcrossing.model.NookipediaService
@@ -7,6 +8,16 @@ import com.example.animalcrossing.utils.LogUtils
 import kotlinx.coroutines.*
 
 class BugViewModel : CreaturesViewModel() {
+
+    companion object{
+        private lateinit var instance: BugViewModel
+
+        @MainThread
+        fun getInstance(): BugViewModel{
+            instance = if(::instance.isInitialized) instance else BugViewModel()
+            return instance
+        }
+    }
 
     var job: Job? = null
     private val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
@@ -18,7 +29,9 @@ class BugViewModel : CreaturesViewModel() {
     private val loading = MutableLiveData<Boolean>()
 
     override fun refresh(apiKey: String, apiVersion: String) {
-        fetchBugList(apiKey, apiVersion)
+        if (bugList.value == null) {
+            fetchBugList(apiKey, apiVersion)
+        }
     }
 
     private fun fetchBugList(apiKey: String, apiVersion: String) {

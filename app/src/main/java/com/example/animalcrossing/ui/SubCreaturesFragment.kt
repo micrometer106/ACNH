@@ -67,9 +67,9 @@ class SubCreaturesFragment(private val page: Int) : Fragment() {
 
     private fun getViewModel() : CreaturesViewModel? {
         return when (page) {
-            0 -> ViewModelProviders.of(this).get(FishViewModel::class.java)
-            1 -> ViewModelProviders.of(this).get(BugViewModel::class.java)
-            2 -> ViewModelProviders.of(this).get(SeaCreatureViewModel::class.java)
+            0 -> FishViewModel.getInstance()
+            1 -> BugViewModel.getInstance()
+            2 -> SeaCreatureViewModel.getInstance()
             else -> null
         }
     }
