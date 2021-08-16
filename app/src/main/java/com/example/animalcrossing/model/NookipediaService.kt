@@ -1,5 +1,6 @@
 package com.example.animalcrossing.model
 
+import com.example.animalcrossing.API.ArtAPI
 import com.example.animalcrossing.API.BugsAPI
 import com.example.animalcrossing.API.FishAPI
 import com.example.animalcrossing.API.SeaCreaturesAPI
@@ -31,5 +32,13 @@ class NookipediaService {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(SeaCreaturesAPI::class.java)
+    }
+
+    fun getArtService() : ArtAPI {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ArtAPI::class.java)
     }
 }

@@ -7,7 +7,7 @@ import com.example.animalcrossing.model.SeaCreature
 import com.example.animalcrossing.utils.LogUtils
 import kotlinx.coroutines.*
 
-class SeaCreatureViewModel : CreaturesViewModel() {
+class SeaCreatureViewModel : CategoryViewModel() {
 
     companion object{
         private lateinit var instance: SeaCreatureViewModel

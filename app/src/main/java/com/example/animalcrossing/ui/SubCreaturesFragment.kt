@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.animalcrossing.R
@@ -16,7 +15,7 @@ import com.example.animalcrossing.adapter.FishAdapter
 import com.example.animalcrossing.adapter.SeaCreatureAdapter
 import com.example.animalcrossing.databinding.SubCreaturesFragmentBinding
 import com.example.animalcrossing.viewModel.BugViewModel
-import com.example.animalcrossing.viewModel.CreaturesViewModel
+import com.example.animalcrossing.viewModel.CategoryViewModel
 import com.example.animalcrossing.viewModel.FishViewModel
 import com.example.animalcrossing.viewModel.SeaCreatureViewModel
 
@@ -24,7 +23,7 @@ class SubCreaturesFragment(private val page: Int) : Fragment() {
 
     private var _binding: SubCreaturesFragmentBinding? = null
     private val binding get() = _binding!!
-    private var viewModel: CreaturesViewModel? = null
+    private var viewModel: CategoryViewModel? = null
     private var recyclerView : RecyclerView? = null
     private val fishAdapter = FishAdapter()
     private val bugAdapter = BugAdapter()
@@ -65,7 +64,7 @@ class SubCreaturesFragment(private val page: Int) : Fragment() {
         }
     }
 
-    private fun getViewModel() : CreaturesViewModel? {
+    private fun getViewModel() : CategoryViewModel? {
         return when (page) {
             0 -> FishViewModel.getInstance()
             1 -> BugViewModel.getInstance()
@@ -84,7 +83,7 @@ class SubCreaturesFragment(private val page: Int) : Fragment() {
 
     private fun observeFishList() {
         val fishViewModel = viewModel as FishViewModel
-        fishViewModel.fishList.observe(this, Observer {
+        fishViewModel.fishList.observe(viewLifecycleOwner, Observer {
             binding.loading.isVisible = false
             fishAdapter.setFishList(it)
             fishAdapter.notifyDataSetChanged()
@@ -93,7 +92,7 @@ class SubCreaturesFragment(private val page: Int) : Fragment() {
 
     private fun observeBugList() {
         val bugViewModel = viewModel as BugViewModel
-        bugViewModel.bugList.observe(this, Observer {
+        bugViewModel.bugList.observe(viewLifecycleOwner, Observer {
             binding.loading.isVisible = false
             bugAdapter.setBugList(it)
             bugAdapter.notifyDataSetChanged()
@@ -102,7 +101,7 @@ class SubCreaturesFragment(private val page: Int) : Fragment() {
 
     private fun observeSeaCreatureList() {
         val seaCreatureViewModel = viewModel as SeaCreatureViewModel
-        seaCreatureViewModel.seaCreatureList.observe(this, Observer {
+        seaCreatureViewModel.seaCreatureList.observe(viewLifecycleOwner, Observer {
             binding.loading.isVisible = false
             seaCreatureAdapter.setSeaCreatureList(it)
             seaCreatureAdapter.notifyDataSetChanged()

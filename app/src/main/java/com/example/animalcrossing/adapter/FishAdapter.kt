@@ -20,7 +20,7 @@ class FishAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return FishViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.creatures_item_layout, parent, false))
+        return FishViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_item_layout, parent, false))
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

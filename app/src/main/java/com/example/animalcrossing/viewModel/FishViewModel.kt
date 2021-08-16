@@ -7,7 +7,7 @@ import com.example.animalcrossing.model.NookipediaService
 import com.example.animalcrossing.utils.LogUtils
 import kotlinx.coroutines.*
 
-class FishViewModel : CreaturesViewModel() {
+class FishViewModel : CategoryViewModel() {
 
     companion object{
         private lateinit var instance: FishViewModel

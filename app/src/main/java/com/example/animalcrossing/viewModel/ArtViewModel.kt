@@ -2,19 +2,19 @@ package com.example.animalcrossing.viewModel
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.MutableLiveData
-import com.example.animalcrossing.model.Bug
+import com.example.animalcrossing.model.Art
 import com.example.animalcrossing.model.NookipediaService
 import com.example.animalcrossing.utils.LogUtils
 import kotlinx.coroutines.*
 
-class BugViewModel : CategoryViewModel() {
+class ArtViewModel : CategoryViewModel() {
 
     companion object{
-        private lateinit var instance: BugViewModel
+        private lateinit var instance: ArtViewModel
 
         @MainThread
-        fun getInstance(): BugViewModel{
-            instance = if(::instance.isInitialized) instance else BugViewModel()
+        fun getInstance(): ArtViewModel{
+            instance = if(::instance.isInitialized) instance else ArtViewModel()
             return instance
         }
     }
@@ -23,27 +23,27 @@ class BugViewModel : CategoryViewModel() {
     private val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
         onError("Exception handled: ${throwable.localizedMessage}")
     }
-    private val bugService = NookipediaService().getBugService()
+    private val artService = NookipediaService().getArtService()
 
-    val bugList = MutableLiveData<MutableList<Bug>>()
+    val artList = MutableLiveData<MutableList<Art>>()
     private val loading = MutableLiveData<Boolean>()
 
     override fun refresh(apiKey: String, apiVersion: String) {
-        if (bugList.value == null) {
-            fetchBugList(apiKey, apiVersion)
+        if (artList.value == null) {
+            fetchArtList(apiKey, apiVersion)
         }
     }
 
-    private fun fetchBugList(apiKey: String, apiVersion: String) {
+    private fun fetchArtList(apiKey: String, apiVersion: String) {
         loading.value = true
         job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
-            val response = bugService.getBugList(
+            val response = artService.getArtList(
                 apiKey,
                 apiVersion
             )
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
-                    bugList.value = response.body()
+                    artList.value = response.body()
                 } else {
                     onError("Error : ${response.message()}, ${response.body()}")
                 }
