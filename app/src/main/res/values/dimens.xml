@@ -2,4 +2,7 @@
 <resources>
     <dimen name="grid_preview_size">80dp</dimen>
     <dimen name="grid_gap_padding">5dp</dimen>
+    <dimen name="today_story_ring_thickness">2dp</dimen>
+    <dimen name="today_story_ring_size">45dp</dimen>
+    <dimen name="today_story_center_img_size">15dp</dimen>
 </resources>

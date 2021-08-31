@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape
+            android:shape="ring"
+            android:thickness="@dimen/today_story_ring_thickness"
+            android:useLevel="false">
+            <size android:width="@dimen/today_story_ring_size"
+                android:height="@dimen/today_story_ring_size" />
+            <gradient
+                android:startColor="@color/colorAccentBright"
+                android:endColor="@color/colorPrimaryBright"
+                android:angle="225" />
+        </shape>
+    </item>
+
+    <item
+        android:width="@dimen/today_story_center_img_size"
+        android:height="@dimen/today_story_center_img_size"
+        android:gravity="center"
+        android:drawable="@drawable/ic_today_story_icon" >
+    </item>
+</layer-list>
