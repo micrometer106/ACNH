@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 
 interface SeaCreaturesAPI {
-    @GET("sea")
+    @GET("nh/sea")
     suspend fun getSeaCreatureList(
             @Header("X-API-KEY") apiKey: String,
             @Header("Accept-Version") version: String

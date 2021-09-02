@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 
 interface ArtAPI {
-    @GET("art")
+    @GET("nh/art")
     suspend fun getArtList(
         @Header("X-API-KEY") apiKey: String,
         @Header("Accept-Version") version: String

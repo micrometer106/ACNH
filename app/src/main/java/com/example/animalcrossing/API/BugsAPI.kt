@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 
 interface BugsAPI {
-    @GET("bugs")
+    @GET("nh/bugs")
     suspend fun getBugList(
             @Header("X-API-KEY") apiKey: String,
             @Header("Accept-Version") version: String

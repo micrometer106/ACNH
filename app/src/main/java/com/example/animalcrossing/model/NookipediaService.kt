@@ -5,7 +5,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class NookipediaService {
-    private val BASE_URL = "https://api.nookipedia.com/nh/"
+    private val BASE_URL = "https://api.nookipedia.com/"
 
     fun getFishService() : FishAPI {
         return Retrofit.Builder()
@@ -45,5 +45,13 @@ class NookipediaService {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(EventAPI::class.java)
+    }
+
+    fun getVillagerService() : VillagersAPI {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(VillagersAPI::class.java)
     }
 }
