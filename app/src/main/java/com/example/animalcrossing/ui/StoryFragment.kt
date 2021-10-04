@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.animalcrossing.databinding.StoryFragmentBinding
-import com.example.animalcrossing.model.Event
-import com.example.animalcrossing.model.Villager
+import com.example.animalcrossing.data.Event
+import com.example.animalcrossing.data.Villager
 
 class StoryFragment(
     private val event: Event,

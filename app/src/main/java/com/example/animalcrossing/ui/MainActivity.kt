@@ -7,8 +7,8 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.animalcrossing.R
-import com.example.animalcrossing.model.Event
-import com.example.animalcrossing.model.Villager
+import com.example.animalcrossing.data.Event
+import com.example.animalcrossing.data.Villager
 import com.example.animalcrossing.viewModel.BirthVillagerViewModel
 import com.example.animalcrossing.viewModel.TodayEventViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView

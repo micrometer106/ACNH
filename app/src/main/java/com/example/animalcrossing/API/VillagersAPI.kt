@@ -1,6 +1,6 @@
 package com.example.animalcrossing.API
 
-import com.example.animalcrossing.model.Villager
+import com.example.animalcrossing.data.Villager
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header

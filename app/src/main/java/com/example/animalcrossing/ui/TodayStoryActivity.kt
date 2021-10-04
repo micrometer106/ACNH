@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.animalcrossing.databinding.TodayStoryActivityBinding
-import com.example.animalcrossing.model.Event
-import com.example.animalcrossing.model.Villager
+import com.example.animalcrossing.data.Event
+import com.example.animalcrossing.data.Villager
 
 class TodayStoryActivity : AppCompatActivity() {
     companion object{

@@ -1,4 +1,4 @@
-package com.example.animalcrossing.model
+package com.example.animalcrossing.data
 
 import com.google.gson.annotations.SerializedName
 

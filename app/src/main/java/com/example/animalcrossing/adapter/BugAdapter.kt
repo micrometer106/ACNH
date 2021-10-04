@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.animalcrossing.R
-import com.example.animalcrossing.model.Bug
+import com.example.animalcrossing.data.Bug
 
 class BugAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

@@ -2,8 +2,8 @@ package com.example.animalcrossing.viewModel
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.MutableLiveData
-import com.example.animalcrossing.model.NookipediaService
-import com.example.animalcrossing.model.Villager
+import com.example.animalcrossing.data.NookipediaService
+import com.example.animalcrossing.data.Villager
 import com.example.animalcrossing.utils.LogUtils
 import kotlinx.coroutines.*
 import java.util.*

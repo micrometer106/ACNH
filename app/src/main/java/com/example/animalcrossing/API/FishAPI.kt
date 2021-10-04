@@ -1,10 +1,9 @@
 package com.example.animalcrossing.API
 
-import com.example.animalcrossing.model.Fish
+import com.example.animalcrossing.data.Fish
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header
-import retrofit2.http.Headers
 
 interface FishAPI {
     @GET("nh/fish")

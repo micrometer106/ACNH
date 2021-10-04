@@ -1,6 +1,6 @@
 package com.example.animalcrossing.API
 
-import com.example.animalcrossing.model.Bug
+import com.example.animalcrossing.data.Bug
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header

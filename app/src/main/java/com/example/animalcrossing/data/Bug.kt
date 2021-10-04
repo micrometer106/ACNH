@@ -1,8 +1,8 @@
-package com.example.animalcrossing.model
+package com.example.animalcrossing.data
 
 import com.google.gson.annotations.SerializedName
 
-data class SeaCreature(
+data class Bug(
         @SerializedName("url")
         val url: String = "",
         @SerializedName("name")
@@ -13,16 +13,20 @@ data class SeaCreature(
         val imageUrl: String = "",
         @SerializedName("render_url")
         val renderUrl: String = "",
+        @SerializedName("time")
+        val time: String = "",
+        @SerializedName("location")
+        val location: String = "",
         @SerializedName("shadow_size")
         val shadowSize: String = "",
-        @SerializedName("shadow_movement")
-        val shadowMovement: String = "",
         @SerializedName("rarity")
         val rarity: String = "",
         @SerializedName("total_catch")
         val totalCatch: Int = -1,
         @SerializedName("sell_nook")
         val sellNook: Int = -1,
+        @SerializedName("sell_flick")
+        val sellFlick: Int = -1,
         @SerializedName("tank_width")
         val tankWidth: Int = -1,
         @SerializedName("tank_length")
