@@ -7,6 +7,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.animalcrossing.R
+import com.example.animalcrossing.helper.LoadTodayStoryHelper
 import com.example.animalcrossing.model.Event
 import com.example.animalcrossing.model.Villager
 import com.example.animalcrossing.viewModel.BirthVillagerViewModel
@@ -16,14 +17,26 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var storyHelper : LoadTodayStoryHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        storyHelper = LoadTodayStoryHelper(
+            getString(R.string.nookipedia_api_key),
+            getString(R.string.nookipedia_api_version)
+        )
 
         toolbar.apply {
             title = getString(R.string.app_name)
             inflateMenu(R.menu.main_menu)
-            onLoadEvent { eventList, birthVillagerList ->
+        }
+
+        storyHelper.loadTodayStory(object : LoadTodayStoryHelper.StoryListener{
+            override fun onStoryLoaded(
+                events: MutableList<Event>,
+                villagers: MutableList<Villager>
+            ) {
                 toolbar.menu.getItem(0).apply {
                     isVisible = true
                     setOnMenuItemClickListener {
@@ -32,13 +45,19 @@ class MainActivity : AppCompatActivity() {
                                 this@MainActivity,
                                 R.drawable.ic_today_story_read
                             )
+                            val eventList = arrayListOf<Event>().apply {
+                                addAll(events)
+                            }
+                            val villagerList = arrayListOf<Villager>().apply {
+                                addAll(villagers)
+                            }
                             val intent = Intent(this@MainActivity, TodayStoryActivity::class.java)
                             intent.apply {
                                 action = Intent.ACTION_VIEW
                                 putExtra(TodayStoryActivity.TODAY_EVENT, eventList)
                                 putExtra(
                                     TodayStoryActivity.TODAY_BIRTH_VILLAGERS,
-                                    birthVillagerList
+                                    villagerList
                                 )
                             }
                             startActivity(intent)
@@ -47,59 +66,15 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-        }
+        })
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.main_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         findViewById<BottomNavigationView>(R.id.bottom_navigation).setupWithNavController(navController)
     }
 
-    private fun onLoadEvent(
-        callback: (events: ArrayList<Event>, birthVillager: ArrayList<Villager>) -> Unit
-    ) {
-        val todayEventVM = TodayEventViewModel.getInstance()
-        todayEventVM.refresh(
-            getString(R.string.nookipedia_api_key),
-            getString(R.string.nookipedia_api_version)
-        )
-        todayEventVM.event.observe(this, {
-            val events = arrayListOf<Event>()
-            events.addAll(it)
-
-            if (events.size > 0) {
-                onLoadBirthVillagers(it) {
-                    val birthVillager = arrayListOf<Villager>()
-                    birthVillager.addAll(it)
-                    callback(events, birthVillager)
-                }
-            }
-
-        })
-    }
-
-    private fun onLoadBirthVillagers(
-        events: MutableList<Event>,
-        callback: (birthVillager: MutableList<Villager>) -> Unit
-    ) {
-        var isBirthdayExist = false
-        for (event in events) {
-            if (event.type == "Birthday") {
-                isBirthdayExist = true
-                break
-            }
-        }
-
-        if (isBirthdayExist) {
-            val birthVillagerVM = BirthVillagerViewModel.getInstance()
-            birthVillagerVM.refresh(
-                getString(R.string.nookipedia_api_key),
-                getString(R.string.nookipedia_api_version)
-            )
-            birthVillagerVM.villager.observe(this, {
-                callback(it)
-            })
-        } else {
-            callback(mutableListOf())
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+        storyHelper.onClear()
     }
 }
