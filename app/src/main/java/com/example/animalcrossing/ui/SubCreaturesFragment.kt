@@ -6,18 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.animalcrossing.R
 import com.example.animalcrossing.adapter.BugAdapter
 import com.example.animalcrossing.adapter.FishAdapter
 import com.example.animalcrossing.adapter.SeaCreatureAdapter
+import com.example.animalcrossing.data.NookipediaService
+import com.example.animalcrossing.data.database.AppDataBase
+import com.example.animalcrossing.data.database.FishDao
+import com.example.animalcrossing.data.repository.FishRepository
 import com.example.animalcrossing.databinding.SubCreaturesFragmentBinding
-import com.example.animalcrossing.viewModel.BugViewModel
-import com.example.animalcrossing.viewModel.CategoryViewModel
-import com.example.animalcrossing.viewModel.FishViewModel
-import com.example.animalcrossing.viewModel.SeaCreatureViewModel
+import com.example.animalcrossing.model.FishModel
+import com.example.animalcrossing.viewModel.*
 
 class SubCreaturesFragment(private val page: Int) : Fragment() {
 
@@ -66,7 +72,7 @@ class SubCreaturesFragment(private val page: Int) : Fragment() {
 
     private fun getViewModel() : CategoryViewModel? {
         return when (page) {
-            0 -> FishViewModel.getInstance()
+//            0 -> FishViewModel.getInstance()
             1 -> BugViewModel.getInstance()
             2 -> SeaCreatureViewModel.getInstance()
             else -> null
@@ -82,7 +88,17 @@ class SubCreaturesFragment(private val page: Int) : Fragment() {
     }
 
     private fun observeFishList() {
-        val fishViewModel = viewModel as FishViewModel
+        val fishViewModel = ViewModelProviders.of(this, object: ViewModelProvider.Factory{
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                @Suppress("UNCHECKED_CAST")
+                return FishViewModel(
+                    FishRepository(NookipediaService(), AppDataBase.getInstance(this@SubCreaturesFragment.context!!).fishDao()),
+                    resources.getString(R.string.nookipedia_api_key),
+                    resources.getString(R.string.nookipedia_api_version)
+                ) as T
+            }
+        })[FishViewModel::class.java]
+//        val fishViewModel = viewModel as FishViewModel
         fishViewModel.fishList.observe(viewLifecycleOwner, Observer {
             binding.loading.isVisible = false
             fishAdapter.setFishList(it)

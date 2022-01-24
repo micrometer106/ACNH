@@ -1,16 +1,14 @@
 package com.example.animalcrossing.data.database
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.animalcrossing.data.Fish
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FishDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun save(fish: Fish)
+    suspend fun save(fishList: List<Fish>)
 
     @Query("SELECT * FROM fish")
-    fun getAll(): MutableList<Fish>
+    fun getAll(): Flow<List<Fish>>
 }

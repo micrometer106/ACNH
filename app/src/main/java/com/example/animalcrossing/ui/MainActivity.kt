@@ -9,6 +9,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.animalcrossing.R
 import com.example.animalcrossing.data.Event
 import com.example.animalcrossing.data.Villager
+import com.example.animalcrossing.utils.LogUtils
 import com.example.animalcrossing.viewModel.BirthVillagerViewModel
 import com.example.animalcrossing.viewModel.TodayEventViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView

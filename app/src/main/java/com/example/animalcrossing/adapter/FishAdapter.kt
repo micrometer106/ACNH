@@ -13,9 +13,9 @@ import com.example.animalcrossing.data.Fish
 
 class FishAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var fishList: MutableList<Fish> = mutableListOf()
+    private var fishList: List<Fish> = mutableListOf()
 
-    fun setFishList(fishList: MutableList<Fish>) {
+    fun setFishList(fishList: List<Fish>) {
         this.fishList = fishList
     }
 
